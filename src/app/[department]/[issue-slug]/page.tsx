@@ -1,22 +1,52 @@
 import { notFound } from "next/navigation";
-import issuesData from "@/data/issues.json";
+import rawIssuesData from "@/app/data/issues.json";
 import { MapPin, Calendar, User, ShieldCheck } from "lucide-react";
 
-// In Next.js, dynamic route parameters are passed as props
+// 1. Define the exact shape of our JSON data for TypeScript
+interface IssueLog {
+  step: number;
+  date: string;
+  notes: string;
+}
+
+interface Issue {
+  id: string;
+  title: string;
+  description: string;
+  categoryId: string;
+  location: {
+    stateId: string;
+    districtId: string;
+    assemblyId: string;
+    village: string;
+  };
+  reporter: {
+    name: string;
+    dateReported: string;
+  };
+  status: {
+    currentStep: number;
+    history: IssueLog[];
+  };
+  upvotes: number;
+  slug: string;
+}
+
+// 2. Tell TypeScript that our raw JSON matches this interface exactly
+const issuesData = rawIssuesData as Issue[];
+
 export default function IssueDetailPage({
   params,
 }: {
   params: { department: string; "issue-slug": string };
 }) {
-  // Find the exact issue from our JSON database using the URL slug
+  // Now TypeScript knows that .find() is valid, and 'i' is an Issue
   const issue = issuesData.find((i) => i.slug === params["issue-slug"]);
 
-  // If the URL doesn't match any issue, show a 404 page
   if (!issue) {
     notFound();
   }
 
-  // Calculate percentage for the progress bar
   const progressPercentage = (issue.status.currentStep / 4) * 100;
 
   return (
@@ -43,7 +73,7 @@ export default function IssueDetailPage({
           <div className="flex flex-wrap gap-6 text-sm font-medium text-gray-500 mb-8 border-b border-gray-100 pb-8">
             <div className="flex items-center gap-2">
               <MapPin size={18} className="text-vip-saffron" />
-              <span>{issue.location.village}, {issue.location.district}</span>
+              <span>{issue.location.village}, {issue.location.districtId}</span>
             </div>
             <div className="flex items-center gap-2">
               <User size={18} className="text-vip-blue" />
@@ -78,10 +108,10 @@ export default function IssueDetailPage({
             ></div>
           </div>
 
-          {/* History Timeline */}
+          {/* History Timeline - TypeScript now knows 'log' is an IssueLog */}
           <div className="space-y-6">
-            {issue.status.history.map((log, index) => (
-              <div key={index} className="flex gap-4 items-start">
+            {issue.status.history.map((log) => (
+              <div key={log.step} className="flex gap-4 items-start">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-vip-light border-2 border-vip-saffron flex items-center justify-center font-bold text-vip-saffron text-sm mt-1">
                   {log.step}
                 </div>
