@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ISS_001",
+    "title": "Pending Degree College Building Construction",
+    "description": "The foundation was laid 3 years ago, but construction has halted due to lack of fund release from the state education board. Students are currently using a dilapidated high school building.",
+    "categoryId": "CAT_EDU",
+    "location": {
+      "stateId": "TS",
+      "districtId": "D_WARANGAL",
+      "assemblyId": "A_WGL_EAST",
+      "village": "Deshaipet"
+    },
+    "reporter": {
+      "name": "Anonymous Citizen",
+      "dateReported": "2025-10-12T08:30:00Z"
+    },
+    "status": {
+      "currentStep": 2, 
+      "history": [
+        { "step": 1, "date": "2025-10-12T08:30:00Z", "notes": "Issue reported via web portal." },
+        { "step": 2, "date": "2025-10-15T14:00:00Z", "notes": "Verified by Core Committee. Currently discussing with local student unions." }
+      ]
+    },
+    "upvotes": 142,
+    "slug": "pending-degree-college-warangal"
+  },
+  {
+    "id": "ISS_002",
+    "title": "Main Road Potholes & Drainage Block",
+    "description": "Severe water logging during mild rains due to uncleared drainage systems. Road surface completely deteriorated.",
+    "categoryId": "CAT_ROAD",
+    "location": {
+      "stateId": "TS",
+      "districtId": "D_KARIMNAGAR",
+      "assemblyId": "A_KRM",
+      "village": "Kothirampur"
+    },
+    "reporter": {
+      "name": "Ramesh K.",
+      "dateReported": "2025-11-04T10:15:00Z"
+    },
+    "status": {
+      "currentStep": 1,
+      "history": [
+        { "step": 1, "date": "2025-11-04T10:15:00Z", "notes": "Issue logged. Pending verification." }
+      ]
+    },
+    "upvotes": 89,
+    "slug": "main-road-drainage-block-karimnagar"
+  }
+]

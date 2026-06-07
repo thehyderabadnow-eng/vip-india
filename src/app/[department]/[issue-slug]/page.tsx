@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import rawIssuesData from "@/app/data/issues.json";
+import rawIssuesData from "@/data/issues.json";
 import { MapPin, Calendar, User, ShieldCheck } from "lucide-react";
 
 // 1. Define the exact shape of our JSON data for TypeScript
